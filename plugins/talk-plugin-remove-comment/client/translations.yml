@@ -1,0 +1,8 @@
+en:
+  talk-plugin-remove-comment:
+    removed_legal: This comment has been remove for legal reasons.
+    removed_user: The user has removed the comment.
+de:
+  talk-plugin-remove-comment:
+    removed_legal: Dieser Kommentar wurde aus rechtlichen Gründen entfernt.
+    removed_user: Dieser Kommentar wurde vom Community-Mitglied selbst entfernt.
