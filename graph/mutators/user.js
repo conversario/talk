@@ -169,9 +169,6 @@ const delUser = async (ctx, id) => {
     }),
     Comment
   );
-
-  // Remove the user.
-  await user.remove();
 };
 
 const changeUserPassword = async (ctx, oldPassword, newPassword) => {

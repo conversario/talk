@@ -1,5 +1,13 @@
-# TODO: make remove_reason type enum, not String
 
+type RootMutation {
+    # deleteComment will delete the comment with the specified id.
+    deleteComment(
+      id: ID!
+      reason: String!
+    ): DeleteActionResponse
+}
+
+# TODO: make remove_reason type enum, not String
 input CreateCommentInput {
   remove_reason: String
 }

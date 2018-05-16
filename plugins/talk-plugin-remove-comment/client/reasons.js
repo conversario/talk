@@ -1,5 +1,5 @@
 export const comment = {
-  user: 'USER_DELETE',
+  user: 'USER',
   legal: 'LEGAL',
   other: 'OTHER',
 };
