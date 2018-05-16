@@ -7,20 +7,17 @@ import { PopupMenu, Button } from 'coral-ui';
 import ClickOutside from 'coral-framework/components/ClickOutside';
 import cn from 'classnames';
 import styles from './RemoveButton.css';
-import * as REASONS from 'coral-framework/graphql/flagReasons';
 import PropTypes from 'prop-types';
 
 import { getErrorMessages, forEachError } from 'coral-framework/utils';
 
-// TODO: (kiwi) Need to adapt CSS classes post refactor to match the rest.
-const name = 'talk-plugin-flags';
+const name = 'talk-plugin-remove-comment';
 
 export default class RemoveButton extends Component {
   state = {
     showMenu: false,
     itemType: '',
     reason: '',
-    message: '',
     step: 0,
     localPost: null,
   };
@@ -34,21 +31,12 @@ export default class RemoveButton extends Component {
     }
   }
 
-  // When the "report" button is clicked expand the menu
+  // When the "remove" button is clicked expand the menu
   onReportClick = () => {
-    const { currentUser } = this.props;
-    if (!currentUser) {
-      this.props.showSignInDialog();
-      return;
-    }
-    if (can(currentUser, 'INTERACT_WITH_COMMUNITY')) {
-      if (this.state.showMenu) {
-        this.closeMenu();
-      } else {
-        this.setState({ showMenu: true });
-      }
+    if (this.state.showMenu) {
+      this.closeMenu();
     } else {
-      this.props.notify('error', t('error.NOT_AUTHORIZED'));
+      this.setState({ showMenu: true });
     }
   };
 
@@ -57,43 +45,28 @@ export default class RemoveButton extends Component {
       showMenu: false,
       itemType: '',
       reason: '',
-      message: '',
       step: 0,
     });
   };
 
   onPopupContinue = async () => {
-    const { postFlag, postDontAgree, id, author_id } = this.props;
-    const { itemType, reason, step, message } = this.state;
+    const { comment: { id }, deleteComment } = this.props;
+    const { reason, step } = this.state;
     let failed = false;
 
     switch (step) {
+      case 0:
+        break;
       case 1: // *after* the last step
         return this.closeMenu();
       default:
         throw new Error(`Unexpected step ${step}`);
     }
 
-    // If itemType and reason are both set, post the action
     if (step === 0) {
-      let action = {
-        item_id,
-        item_type: itemType,
-        message,
-      };
-
       try {
-        const result = await postFlag({ ...action, reason });
-        if (itemType === 'COMMENTS') {
-          this.setState({ localPost: result.data.createFlag.flag.id });
-        }
+        const result = await this.props.deleteComment({ id, reason });
       } catch (errors) {
-        forEachError(errors, ({ error, msg }) => {
-          if (error.translation_key === 'ALREADY_EXISTS') {
-            msg = t('already_flagged_username');
-          }
-          this.props.notify('error', msg);
-        });
         failed = true;
       }
     }
@@ -132,6 +105,11 @@ export default class RemoveButton extends Component {
     const { localPost } = this.state;
     const flagged = flaggedByCurrentUser || localPost;
     const popupMenu = getPopupMenu[this.state.step](this.state.itemType);
+
+    const { user } = this.props;
+
+    console.log('RemoveButton.render() props', this.props);
+    console.log('RemoveButton.render() user', user);
 
     return (
       <ClickOutside onClickOutside={this.handleClickOutside}>
@@ -196,16 +174,6 @@ export default class RemoveButton extends Component {
                         <br />
                       </div>
                     ))}
-                    {this.state.reason && (
-                      <div>
-                        <label
-                          htmlFor={'message'}
-                          className={`${name}-popup-textarea-label`}
-                        >
-                          {t('flag_reason')}
-                        </label>
-                      </div>
-                    )}
                   </form>
                 )}
                 <div className={`${name}-popup-counter`}>
