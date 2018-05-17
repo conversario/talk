@@ -7,6 +7,7 @@ export default withFragments({
     fragment TalkPluginRemoveComment_DeletedTombstone_comment on Comment {
       body
       remove_reason
+      deleted_at
     }
   `,
 })(DeletedTombstone);
