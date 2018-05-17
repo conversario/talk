@@ -33,15 +33,6 @@ const getPopupMenu = [
 ];
 
 const RemoveComment = props => {
-  console.log('RemoveComment', props);
-  const { currentUser } = props;
-  console.log('RemoveComment', currentUser);
-  // Only show the remove button if
-  // - user is admin/moderator or
-  // - user is author
-  if (!props.root.me || props.root.me.id != props.comment.user.id) {
-    return null;
-  }
   return <RemoveButton {...props} getPopupMenu={getPopupMenu} />;
 };
 
