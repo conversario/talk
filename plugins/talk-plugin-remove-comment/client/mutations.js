@@ -23,6 +23,23 @@ export const withDeleteComment = withMutation(
               errors: null,
             },
           },
+          update: proxy => {
+            const fragmentId = `Comment_${id}`;
+
+            const fragment = gql`
+              fragment Talk_RemovedComments_deleteComment on Comment {
+                body
+                remove_reason
+                deleted_at
+              }
+            `;
+            const data = proxy.readFragment({ fragment, id: fragmentId });
+            data.body = '';
+            data.deleted_at = new Date();
+            data.remove_reason = reason;
+
+            proxy.writeFragment({ fragment, id: fragmentId, data });
+          },
         });
       },
     }),
