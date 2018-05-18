@@ -1,43 +1,41 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import { comment } from '../reasons';
 import t from 'coral-framework/services/i18n';
-
+import { can } from 'plugin-api/beta/client/services';
 import RemoveButton from './RemoveButton';
-// import RemoveButton from '../containers/RemoveButton';
+import { removeReason } from '../removeReasons';
 
-const getPopupMenu = [
-  () => {
-    // TODO: offer these options only for moderators
-    // Normals users get no options; implicit reason will be "USER_REMOVED"
-    const options = [
-      { val: comment.legal, text: t('remove_reason_legal') },
-      { val: comment.user, text: t('remove_reason_user') },
-    ];
-    return {
-      header: t('remove_comment.header'),
-      text: t('remove_comment.are_you_sure'),
-      options,
-      button: t('remove_comment.yes_remove'),
-      sets: 'reason',
-    };
-  },
-  () => {
-    return {
-      header: t('remove_comment.done_header'),
-      text: t('remove_comment.done_message'),
-      button: t('done'),
-    };
-  },
-];
+const name = 'talk-plugin-remove-comment';
+
+const makePopupMenuGetter = (text, options) => () => {
+  return {
+    header: t(name + '.header'),
+    text,
+    options,
+    button: t(name + '.yes_remove'),
+  };
+};
 
 const RemoveComment = props => {
-  return <RemoveButton {...props} getPopupMenu={getPopupMenu} />;
+  let text = t(name + '.are_you_sure');
+  let options = null;
+  if (can(props.user, 'MODERATE_COMMENTS')) {
+    options = [
+      { val: removeReason.LEGAL, text: t(name + '.reason_LEGAL') },
+      { val: removeReason.USER, text: t(name + '.reason_USER') },
+    ];
+    text = text + ' ' + t(name + '.choose_reason');
+  }
+  return (
+    <RemoveButton
+      {...props}
+      getPopupMenu={makePopupMenuGetter(text, options)}
+    />
+  );
 };
 
 RemoveComment.propTypes = {
-  currentUser: PropTypes.object,
+  user: PropTypes.object,
 };
 
 export default RemoveComment;

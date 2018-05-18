@@ -4,20 +4,17 @@ import CommentTombstone from 'coral-embed-stream/src/tabs/stream/components/Comm
 import styles from 'coral-embed-stream/src/tabs/stream/components/CommentTombstone.css';
 import t from 'coral-framework/services/i18n';
 
-import { comment } from '../reasons';
+import { removeReason } from '../removeReasons';
 
 const name = 'talk-plugin-remove-comment';
 
 // Render in place of a Comment when the author of the comment is <action>
 class DeletedTombstone extends React.Component {
-  getCopy(reason) {
-    switch (reason) {
-      case comment.user:
-        return t(name + '.removed_user');
-      case comment.legal:
-        return t(name + '.removed_legal');
-      default:
-        return t('framework.comment_is_hidden');
+  getCopy(remove_reason) {
+    if (remove_reason in removeReason) {
+      return t(name + '.reason_' + remove_reason);
+    } else {
+      return t('framework.comment_is_hidden');
     }
   }
 

@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
 
 import t from 'coral-framework/services/i18n';
-import { can } from 'coral-framework/services/perms';
 
 import { PopupMenu, Button } from 'coral-ui';
 import ClickOutside from 'coral-framework/components/ClickOutside';
 import cn from 'classnames';
 import styles from './RemoveButton.css';
+import popupstyles from './Popup.css';
 import PropTypes from 'prop-types';
-
-import { getErrorMessages, forEachError } from 'coral-framework/utils';
 
 const name = 'talk-plugin-remove-comment';
 
 export default class RemoveButton extends Component {
   state = {
     showMenu: false,
-    itemType: '',
     reason: '',
     step: 0,
-    localPost: null,
   };
 
   componentDidUpdate() {
@@ -31,8 +27,8 @@ export default class RemoveButton extends Component {
     }
   }
 
-  // When the "remove" button is clicked expand the menu
-  onReportClick = () => {
+  // When the "Remove" button is clicked expand the menu
+  onButtonClick = () => {
     if (this.state.showMenu) {
       this.closeMenu();
     } else {
@@ -43,11 +39,15 @@ export default class RemoveButton extends Component {
   closeMenu = () => {
     this.setState({
       showMenu: false,
-      itemType: '',
       reason: '',
       step: 0,
     });
   };
+
+  // The form is only submittable if one of the options is selected. If the
+  // form/popup does not have any options, then it's submittable right away.
+  formIsSubmittable = () =>
+    !this.props.getPopupMenu().options || this.state.reason;
 
   onPopupContinue = async () => {
     const { comment: { id }, deleteComment } = this.props;
@@ -64,9 +64,13 @@ export default class RemoveButton extends Component {
     }
 
     if (step === 0) {
-      try {
-        const result = await this.props.deleteComment({ id, reason });
-      } catch (errors) {
+      if (this.formIsSubmittable()) {
+        try {
+          await deleteComment({ id, reason });
+        } catch (errors) {
+          failed = true;
+        }
+      } else {
         failed = true;
       }
     }
@@ -76,24 +80,6 @@ export default class RemoveButton extends Component {
     }
   };
 
-  onPopupOptionClick = sets => e => {
-    // If flagging a user, indicate that this is referencing the username rather than the bio
-    if (sets === 'itemType' && e.target.value === 'users') {
-      this.setState({ field: 'username' });
-    }
-
-    // Set itemType and field if they are defined in the popupMenu
-    const currentMenu = this.props.getPopupMenu[this.state.step]();
-    if (currentMenu.itemType) {
-      this.setState({ itemType: currentMenu.itemType });
-    }
-    if (currentMenu.field) {
-      this.setState({ field: currentMenu.field });
-    }
-
-    this.setState({ [sets]: e.target.value });
-  };
-
   handleClickOutside = () => {
     if (this.state.showMenu) {
       this.closeMenu();
@@ -101,46 +87,20 @@ export default class RemoveButton extends Component {
   };
 
   render() {
-    const { getPopupMenu, flaggedByCurrentUser } = this.props;
-    const { localPost } = this.state;
-    const flagged = flaggedByCurrentUser || localPost;
-    const popupMenu = getPopupMenu[this.state.step](this.state.itemType);
+    const { getPopupMenu } = this.props;
 
-    const { user } = this.props;
-
-    console.log('RemoveButton.render() props', this.props);
-    console.log('RemoveButton.render() user', user);
-
+    const popupMenu = getPopupMenu();
     return (
       <ClickOutside onClickOutside={this.handleClickOutside}>
         <div className={`${name}-container`}>
           <button
-            disabled={flagged}
             ref={ref => (this.RemoveButton = ref)}
-            onClick={
-              !this.props.banned && !flaggedByCurrentUser && !localPost
-                ? this.onReportClick
-                : null
-            }
-            className={cn(
-              `${name}-button`,
-              {
-                [`${name}-button-flagged`]: flagged,
-                [styles.flaggedButton]: flagged,
-              },
-              styles.button
-            )}
+            onClick={this.onButtonClick}
+            className={cn(`${name}-button`, styles.button)}
           >
-            {flagged ? (
-              <span className={`${name}-button-text`}>{t('reported')}</span>
-            ) : (
-              <span className={`${name}-button-text`}>{t('remove')}</span>
-            )}
+            <span className={`${name}-button-text`}>{t(name + '.remove')}</span>
             <i
-              className={cn(`${name}-icon`, 'material-icons', styles.icon, {
-                flaggedIcon: flagged,
-                [styles.flaggedIcon]: flagged,
-              })}
+              className={cn(`${name}-icon`, 'material-icons', styles.icon)}
               aria-hidden={true}
             >
               delete
@@ -149,40 +109,40 @@ export default class RemoveButton extends Component {
           {this.state.showMenu && (
             <div className={`${name}-popup`} ref={ref => (this.popup = ref)}>
               <PopupMenu>
-                <div className={`${name}-popup-header`}>{popupMenu.header}</div>
+                <div className={cn(popupstyles.header)}>{popupMenu.header}</div>
                 {popupMenu.text && (
-                  <div className={`${name}-popup-text`}>{popupMenu.text}</div>
+                  <p className={cn(popupstyles.text)}>{popupMenu.text}</p>
                 )}
                 {popupMenu.options && (
-                  <form className={`${name}-popup-form`}>
+                  <form className={cn(popupstyles.form)}>
                     {popupMenu.options.map(option => (
                       <div key={option.val}>
                         <input
-                          className={`${name}-popup-radio`}
+                          className={cn(popupstyles.radio)}
                           type="radio"
                           id={option.val}
-                          checked={this.state[popupMenu.sets] === option.val}
-                          onClick={this.onPopupOptionClick(popupMenu.sets)}
+                          checked={this.state.reason === option.val}
+                          onClick={e =>
+                            this.setState({ reason: e.target.value })
+                          }
                           value={option.val}
                         />
                         <label
                           htmlFor={option.val}
-                          className={`${name}-popup-radio-label`}
+                          className={cn(popupstyles.radioLabel)}
                         >
-                          {option.text}
+                          <i>{option.text}</i>
                         </label>
                         <br />
                       </div>
                     ))}
                   </form>
                 )}
-                <div className={`${name}-popup-counter`}>
-                  {this.state.step + 1} of {getPopupMenu.length}
-                </div>
                 {popupMenu.button && (
                   <Button
-                    className={`${name}-popup-button`}
+                    className={cn(popupstyles.button)}
                     onClick={this.onPopupContinue}
+                    disabled={!this.formIsSubmittable()}
                   >
                     {popupMenu.button}
                   </Button>
@@ -197,8 +157,6 @@ export default class RemoveButton extends Component {
 }
 
 RemoveButton.propTypes = {
-  currentUser: PropTypes.object,
-  getPopupMenu: PropTypes.array,
+  getPopupMenu: PropTypes.func,
   notify: PropTypes.func,
-  showSignInDialog: PropTypes.func,
 };

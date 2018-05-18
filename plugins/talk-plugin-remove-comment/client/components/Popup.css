@@ -1,0 +1,30 @@
+.header {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.form {
+  margin-bottom: 10px;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.radio {
+  margin:5px;
+}
+
+.radioLabel {
+  margin:5px;
+  font-weight: 400;
+  font-size: .9rem;
+}
+
+.button {
+  float: right;
+  margin-top: 10px;
+}
