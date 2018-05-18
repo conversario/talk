@@ -1,3 +1,4 @@
+const { check } = require('perms/utils');
 const { ErrNotAuthorized } = require('errors');
 
 // Delete a single comment
@@ -36,6 +37,8 @@ module.exports = ctx => {
 
   if (ctx.user) {
     mutators.Comment.deleteComment = ({ id, reason }) => {
+      // Only admins/mods can choose a reason; for other we always set 'USER'
+      reason = check(ctx.user, ['ADMIN', 'MODERATOR']) ? reason : 'USER';
       deleteComment(ctx, id, reason);
     };
   }

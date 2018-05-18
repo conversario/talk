@@ -1,10 +1,46 @@
+.popupMenuHeader {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.popup-form {
+  margin-bottom: 10px;
+}
+
+.popup-header {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.popup-radio {
+  margin:5px;
+}
+
+.popup-radio-label {
+  margin:5px;
+  font-weight: 400;
+  font-size: .9rem;
+}
+
+.popup-button {
+  float: right;
+  margin-top: 10px;
+}
+
+.reason-text {
+  margin-left: 20px;
+  margin-top: 5px;
+  width: 75%;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  max-width: calc(100% - 40px);
+}
+
 .button {
   composes: buttonReset from "coral-framework/styles/reset.css";
   margin: 5px 0px 5px 10px;
-}
-
-button[disabled] {
-  cursor: default;
 }
 
 .icon {

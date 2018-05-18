@@ -1,8 +1,18 @@
 en:
   talk-plugin-remove-comment:
-    removed_legal: This comment has been remove for legal reasons.
-    removed_user: The user has removed the comment.
+    remove: "Remove"
+    header: "Remove comment"
+    are_you_sure: "Are you sure you want to remove your comment? This cannot be undone. (Replies remain intact.)"
+    yes_remove: "Yes, remove"
+    choose_reason: "Please choose the reason:"
+    reason_LEGAL: "This comment has been remove for legal reasons."
+    reason_USER: "The user has removed the comment."
 de:
   talk-plugin-remove-comment:
-    removed_legal: Dieser Kommentar wurde aus rechtlichen Gründen entfernt.
-    removed_user: Dieser Kommentar wurde vom Community-Mitglied selbst entfernt.
+    remove: "Entfernen"
+    header: "Kommentar entfernen"
+    are_you_sure: "Sind Sie sicher, dass Sie den Kommentar unwiderruflich entfernen möchten? (Antworten bleiben erhalten.)"
+    yes_remove: "Ja, entfernen"
+    choose_reason: "Wählen Sie eine Begründung aus:"
+    reason_LEGAL: "Dieser Kommentar wurde aus rechtlichen Gründen entfernt."
+    reason_USER: "Dieser Kommentar wurde vom Community-Mitglied selbst entfernt."
