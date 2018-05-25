@@ -169,7 +169,7 @@ de:
     if_you_dont_change_your_name: "Wenn Sie Ihren Nutzernamen an diesem Punkt nicht ändern, wird Ihr Facebook-Name mit Ihren Kommentaren angezeigt."
     required_field: "Pflichtfeld"
     save: Speichern
-    special_characters: "Nutzernamen dürfen nur Buchstaben, Zahlen und _ enthalten"
+    special_characters: "Nutzernamen dürfen enthalten: Buchstaben, Zahlen, Punkt, Binde-/Unterstrich, Leerzeichen (nicht am Anfang oder Ende)"
     username: Nutzername
     write_your_username: "Nutzername bearbeiten"
     your_username: "Ihr Nutzername erscheint an jedem Ihrer veröffentlichten Kommentare."
@@ -234,7 +234,7 @@ de:
     email_password: "E-Mail und/oder Passwort inkorrekt."
     organization_name: "Namen von Organisationen dürfen nur Buchstaben und Zahlen enthalten."
     password: "Passwort muss mindestens 8 Zeichen enthalten"
-    username: "Nutzernamen dürfen nur Buchstaben, Zahlen und _ enthalten"
+    username: "Nutzernamen dürfen enthalten: Buchstaben, Zahlen, Punkt, Binde-/Unterstrich, Leerzeichen (nicht am Anfang oder Ende)"
     unexpected: "Unerwarteter Fehler aufgetreten. Es tut uns leid!"
   flag_comment: "Kommentar melden"
   flag_reason: "Grund der Meldung (optional)"
@@ -251,7 +251,7 @@ de:
     content_not_available: "Dieser Inhalt ist nicht verfügbar"
     edit_name:
       button: Senden
-      error: "Nutzernamen dürfen nur Buchstaben, Zahlen und _ enthalten"
+      error: "Nutzernamen dürfen enthalten: Buchstaben, Zahlen, Punkt, Binde-/Unterstrich, Leerzeichen (nicht am Anfang oder Ende)"
       label: "Neuer Nutzername"
       msg: "Ihr Konto ist vorübergehend gesperrt, da Ihr Nutzername als unangemessen eingestuft wurde. Um Ihr Konto wieder herzustellen, geben Sie bitte einen neuen Nutzernamen ein. Bei Fragen, kontaktieren Sie uns bitte."
     changed_name:

@@ -187,7 +187,7 @@ en:
     if_you_dont_change_your_name: "If you don't change your username at this step your Facebook display name will appear alongside of all your comments."
     required_field: "Required field"
     save: Save
-    special_characters: "Usernames can contain letters numbers and _ only"
+    special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not and start or end)"
     username: Username
     write_your_username: "Edit your username"
     your_username: "Your username appears on every comment you post."
@@ -232,7 +232,7 @@ en:
     PASSWORD_RESET_TOKEN_INVALID: "Your password reset link is invalid."
     COMMENT_TOO_SHORT: "Comments should be more than one character, please revise your comment and try again."
     NOT_AUTHORIZED: "You are not authorized to perform this action."
-    NO_SPECIAL_CHARACTERS: "Usernames can contain letters numbers and _ only"
+    NO_SPECIAL_CHARACTERS: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not and start or end)"
     PASSWORD_LENGTH: "Password is too short"
     PROFANITY_ERROR: "Usernames must not contain profanity. Please contact the administrator if you believe this to be in error."
     RATE_LIMIT_EXCEEDED: "Rate limit exceeded"
@@ -261,7 +261,7 @@ en:
     organization_name: "Organization name must only contain letters or numbers."
     organization_contact_email: "Organization email is not valid."
     password: "Password must be at least 8 characters"
-    username: "Usernames can contain letters numbers and _ only"
+    username: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not and start or end)"
     unexpected: "Unexpected error occurred. Sorry!"
     required_field: "This field is required"
     temporarily_suspended: "Your account is currently suspended. It will be reactivated {0}. Please contact us if you have any questions."
@@ -281,7 +281,7 @@ en:
     content_not_available: "This content is not available"
     edit_name:
       button: Submit
-      error: "Usernames can contain letters numbers and _ only"
+      error: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not and start or end)"
       label: "New Username"
       msg: "Your account is currently suspended because your username has been deemed inappropriate. To restore your account please enter a new username. Please contact us if you have any questions."
     changed_name:

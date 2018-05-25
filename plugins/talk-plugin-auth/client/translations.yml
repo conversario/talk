@@ -85,7 +85,7 @@ da:
       if_you_dont_change_your_name: "If you don't change your username at this step your Facebook display name will appear alongside of all your comments."
       required_field: "Required field"
       save: Save
-      special_characters: "Usernames can contain letters numbers and _ only"
+      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not and start or end)"
       username: Username
       write_your_username: "Edit your username"
       your_username: "Your username appears on every comment you post."
@@ -129,7 +129,7 @@ en:
       if_you_dont_change_your_name: "If you don't change your username at this step your Facebook display name will appear alongside of all your comments."
       required_field: "Required field"
       save: Save
-      special_characters: "Usernames can contain letters numbers and _ only"
+      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not and start or end)"
       username: Username
       write_your_username: "Edit your username"
       your_username: "Your username appears on every comment you post."
@@ -197,7 +197,7 @@ de:
       email_or_username_in_use: "E-Mail-Adresse oder Nutzername bereits vergeben"
       required_field: "Pflichtfeld"
       passwords_dont_match: "Passwörter nicht identisch."
-      special_characters: "Nutzernamen dürfen nur Buchstaben, Zahlen und _ enthalten"
+      special_characters: "Nutzernamen dürfen enthalten: Buchstaben, Zahlen, Punkt, Binde-/Unterstrich, Leerzeichen (nicht am Anfang oder Ende)"
       sign_in_to_comment: "Zum Kommentieren anmelden"
       check_the_form: "Ungültige Eingabe. Bitte prüfen Sie Ihre Felder"
     set_username_dialog:
@@ -209,7 +209,7 @@ de:
       if_you_dont_change_your_name: "Wenn Sie Ihren Nutzernamen an diesem Punkt nicht ändern, wird Ihr Facebook-Name mit Ihren Kommentaren angezeigt."
       required_field: "Pflichtfeld"
       save: Speichern
-      special_characters: "Nutzernamen dürfen nur Buchstaben, Zahlen und _ enthalten"
+      special_characters: "Nutzernamen dürfen enthalten: Buchstaben, Zahlen, Punkt, Binde-/Unterstrich, Leerzeichen (nicht am Anfang oder Ende)"
       username: Nutzername
       write_your_username: "Nutzername bearbeiten"
       your_username: "Ihr Nutzername erscheint an jedem Ihrer veröffentlichten Kommentare."
@@ -411,7 +411,7 @@ pt_BR:
       if_you_dont_change_your_name: "If you don't change your username at this step your Facebook display name will appear alongside of all your comments."
       required_field: "Required field"
       save: Save
-      special_characters: "Usernames can contain letters numbers and _ only"
+      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not and start or end)"
       username: Username
       write_your_username: "Edit your username"
       your_username: "Your username appears on every comment you post."

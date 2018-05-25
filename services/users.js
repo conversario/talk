@@ -580,7 +580,7 @@ class Users {
    * @return {Promise}
    */
   static async isValidUsername(username, checkAgainstWordlist = true) {
-    const onlyLettersNumbersUnderscore = /^[A-Za-z0-9_]+$/;
+    const onlyLettersNumbersUnderscore = /^[\w.-][\w .-]{1,48}[\w.-]$/;
 
     if (!username) {
       throw new ErrMissingUsername();
