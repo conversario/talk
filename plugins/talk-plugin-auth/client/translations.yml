@@ -73,7 +73,7 @@ da:
       email_or_username_in_use: "Email address or Username already in use"
       required_field: "This field is required"
       passwords_dont_match: "Passwords don't match."
-      special_characters: "Usernames can contain letters, numbers and _ only"
+      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not at start or end)"
       sign_in_to_comment: "Sign in to comment"
       check_the_form: "Invalid Form. Please, check the fields"
     set_username_dialog:
@@ -85,7 +85,7 @@ da:
       if_you_dont_change_your_name: "If you don't change your username at this step your Facebook display name will appear alongside of all your comments."
       required_field: "Required field"
       save: Save
-      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not and start or end)"
+      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not at start or end)"
       username: Username
       write_your_username: "Edit your username"
       your_username: "Your username appears on every comment you post."
@@ -117,7 +117,7 @@ en:
       email_or_username_in_use: "Email address or Username already in use"
       required_field: "This field is required"
       passwords_dont_match: "Passwords don't match."
-      special_characters: "Usernames can contain letters, numbers and _ only"
+      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not at start or end)"
       sign_in_to_comment: "Sign in to comment"
       check_the_form: "Invalid Form. Please, check the fields"
     set_username_dialog:
@@ -129,7 +129,7 @@ en:
       if_you_dont_change_your_name: "If you don't change your username at this step your Facebook display name will appear alongside of all your comments."
       required_field: "Required field"
       save: Save
-      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not and start or end)"
+      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not at start or end)"
       username: Username
       write_your_username: "Edit your username"
       your_username: "Your username appears on every comment you post."
@@ -399,7 +399,7 @@ pt_BR:
       email_or_username_in_use: "Email address or Username already in use"
       required_field: "This field is required"
       passwords_dont_match: "Passwords don't match."
-      special_characters: "Usernames can contain letters, numbers and _ only"
+      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not at start or end)"
       sign_in_to_comment: "Sign in to comment"
       check_the_form: "Invalid Form. Please, check the fields"
     set_username_dialog:
@@ -411,7 +411,7 @@ pt_BR:
       if_you_dont_change_your_name: "If you don't change your username at this step your Facebook display name will appear alongside of all your comments."
       required_field: "Required field"
       save: Save
-      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not and start or end)"
+      special_characters: "Usernames may only contain: letters, numbers, period, hyphen, underscore, space (not at start or end)"
       username: Username
       write_your_username: "Edit your username"
       your_username: "Your username appears on every comment you post."
