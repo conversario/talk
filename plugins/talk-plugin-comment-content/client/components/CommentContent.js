@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Linkify from 'react-linkify';
+import { linkify } from 'react-linkify';
+
+linkify.set({
+  fuzzyEmail: false,
+  fuzzyLink: false,
+});
 
 const name = 'talk-plugin-comment-content';
 
